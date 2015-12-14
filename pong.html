@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <title>WebSocket Ping Pong</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="buttons">
+      <input type="text" id="connectionId" />
+      <input type="button" id="btnJoin" value="Join game" />
+      <input type="button" id="btnNew" value="New game"/>
+    </div>
+    
+    <div id="score"></div>
+
+    <div id="field" class="field stop">
+      <div class="player" id="player1"></div>
+      <div class="player" id="player2"></div>
+      <div class="ball" id="ball"></div>
+    </div>
+
+   <script src="pong.js"></script>  
+   <script src="connection.js"></script>  
+   <script src="pong-connection.js"></script>  
+
+   <script>
+ 
+      window.onload = function() {
+
+        var pongOptions = {
+          fieldElement: document.getElementById("field"),
+          player1Element: document.getElementById("player1"),
+          player2Element: document.getElementById("player2"),
+          ballElement: document.getElementById("ball"),
+          scoreElement: document.getElementById("score"),          
+        }
+
+        var connOptions = {
+            host: "74.207.245.157",
+            port: "9000",      
+        }
+
+        document.getElementById("btnNew").addEventListener("click", function() {
+          connOptions.isServer=  true;
+          document.getElementById("field").className = "field";
+          var pongConnection = new PongConnection(connOptions, pongOptions, Pong);
+        });
+        document.getElementById("btnJoin").addEventListener("click", function() {
+          connOptions.isServer = false;
+          document.getElementById("field").className = "field";
+          connOptions.connectionId = document.getElementById("connectionId").value;
+          var pongConnection = new PongConnection(connOptions, pongOptions, Pong);
+        });
+      }
+
+   </script>
+  </body>
+</html>
+

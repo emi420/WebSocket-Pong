@@ -1,0 +1,35 @@
+    .player, .ball, .point{
+        background: #000;
+        position: absolute;
+    }
+    .player {
+        width: 180px;
+        height: 5px;
+    }
+    .ball {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        transition: none;
+    }
+    .moving {
+        /*transition: all .08s linear;*/
+    }
+    .field {
+        margin-left: 200px;
+        position: relative;
+        width: 480px;
+        height: 480px;      
+        border: 1px solid #000;
+    }
+    .point {
+        opacity: .6;
+        width: 3px;
+        height: 3px;
+        border-radius: 100%;
+    }
+
+    .field.stop .ball,
+    .field.stop .player {
+        visibility: hidden
+    }
